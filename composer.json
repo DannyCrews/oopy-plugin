@@ -1,0 +1,17 @@
+{
+    "name": "dcrews/oopy_plugin",
+    "description": "Awesome plugin example",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Dan Crews",
+            "email": "dancrews@me.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}

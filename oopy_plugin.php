@@ -37,6 +37,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 // 	exit;
 // }
 
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+}
+
+use Inc\Activate;
+use Inc\Deactivate;
+use Inc\Admin\AdminPages;
+
 if ( !class_exists( 'OopyPlugin' ) ) {
 
 	class OopyPlugin
@@ -73,7 +81,7 @@ if ( !class_exists( 'OopyPlugin' ) ) {
 		}
 
 		function custom_post_type() {
-			register_post_type( 'book', array( 'public' => true, 'label' => 'Books' ) );
+			register_post_type( 'book', ['public' => true, 'label' => 'Books' ] );
 		}
 
 		function enqueue() {
@@ -83,8 +91,7 @@ if ( !class_exists( 'OopyPlugin' ) ) {
 		}
 
 		function activate() {
-				require_once plugin_dir_path( __FILE__ ) . 'inc/oopy-plugin-activate.php';
-				OopyPluginActivate::activate();
+				Activate::activate();
 			}
 	}
 
@@ -95,6 +102,5 @@ if ( !class_exists( 'OopyPlugin' ) ) {
 	register_activation_hook( __FILE__, array( $oopyPlugin, 'activate' ) );
 
 	// deactivation
-	require_once plugin_dir_path( __FILE__ ) . 'inc/oopy-plugin-deactivate.php';
-	register_deactivation_hook( __FILE__, array( 'OopyPluginDeactivate', 'deactivate' ) );
+	register_deactivation_hook( __FILE__, array( 'Deactivate', 'deactivate' ) );
 }
