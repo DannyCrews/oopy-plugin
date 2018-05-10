@@ -14,9 +14,11 @@ final class Init
 	{
 		return [
 			Pages\Admin::class,
-			Base\Enqueue::class
+			Base\Enqueue::class,
+			Base\SettingsLinks::class
 		];
 	}
+
 	/**
 	 * Loop through the classes, initialize them,
 	 * and call the register() method if it exists
@@ -31,6 +33,7 @@ final class Init
 			}
 		}
 	}
+
 	/**
 	 * Initialize the class
 	 * @param  class $class    class from the services array

@@ -26,24 +26,40 @@ You should have received a copy of the GNU General Public License
 along with Oopy Plugin. If not, see https://www.gnu.org/licenses/gpl.html.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
-}
+// If this file is called firectly, abort!!!
+defined( 'ABSPATH' ) or die( 'Hey, what are you doing here? You silly human!' );
 
-// defined( 'ABSPATH' ) or die( 'Hey, you can\t access this file, you silly human!' );
-
-// if ( ! function_exists( 'add_action' ) ) {
-// 	echo 'Hey, you can\t access this file, you silly human!';
-// 	exit;
-// }
-
+// Require once the Composer Autoload
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 }
 
+// Define CONSTANTS
 define( 'PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'PLUGIN', plugin_basename( __FILE__ ) );
 
+use Inc\Base\Activate;
+use Inc\Base\Deactivate;
+
+/**
+ * The code that runs during plugin activation
+ */
+function activate_oopy_plugin() {
+	Activate::activate();
+}
+/**
+ * The code that runs during plugin deactivation
+ */
+function deactivate_oopy_plugin() {
+	Deactivate::deactivate();
+}
+
+register_activation_hook( __FILE__, 'activate_oopy_plugin' );
+register_deactivation_hook( __FILE__, 'deactivate_oopy_plugin' );
+/**
+ * Initialize all the core classes of the plugin
+ */
 if ( class_exists( 'Inc\\Init' ) ) {
 	Inc\Init::register_services();
 }
