@@ -13,7 +13,7 @@
 
 			<form method="post" action="options.php">
 				<?php
-					settings_fields( 'oopy_options_group' );
+					settings_fields( 'oopy_plugin_settings' );
 					do_settings_sections( 'oopy_plugin' );
 					submit_button();
 				?>

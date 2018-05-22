@@ -28,15 +28,15 @@ class AdminCallbacks extends BaseController
 		return require_once( "$this->plugin_path/templates/widget.php" );
 	}
 
-	public function oopyOptionsGroup( $input )
-	{
-		return $input;
-	}
+	// public function oopyOptionsGroup( $input )
+	// {
+	// 	return $input;
+	// }
 
-	public function oopyAdminSection()
-	{
-		echo 'Check this beautiful section!';
-	}
+	// public function oopyAdminSection()
+	// {
+	// 	echo 'Check this beautiful section!';
+	// }
 
 	public function oopyTextExample()
 	{
