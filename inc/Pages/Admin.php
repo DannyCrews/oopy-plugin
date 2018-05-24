@@ -89,15 +89,13 @@ class Admin extends BaseController
 
 	public function setSettings()
 	{
-		$args = [];
-
-		foreach ( $this->managers as $key => $value ) {
-			$args[] = [
+		$args = [
+			[
 				'option_group' => 'oopy_plugin_settings',
-				'option_name' => $key,
+				'option_name' => 'oopy_plugin',
 				'callback' => [ $this->callbacks_mngr, 'checkboxSanitize' ]
-			];
-		}
+			]
+		];
 
 		$this->settings->setSettings( $args );
 	}
@@ -122,17 +120,18 @@ class Admin extends BaseController
 		$args = [];
 
 		foreach ( $this->managers as $key => $value ) {
-			$args[] = array(
+			$args[] = [
 				'id' => $key,
 				'title' => $value,
-				'callback' => array( $this->callbacks_mngr, 'checkboxField' ),
+				'callback' => [ $this->callbacks_mngr, 'checkboxField' ],
 				'page' => 'oopy_plugin',
 				'section' => 'oopy_admin_index',
-				'args' => array(
+				'args' => [
+					'option_name' => 'oopy_plugin',
 					'label_for' => $key,
 					'class' => 'ui-toggle'
-				)
-			);
+				]
+			];
 		}
 		$this->settings->setFields( $args );
 	}
