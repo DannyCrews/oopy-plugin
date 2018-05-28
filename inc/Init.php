@@ -13,9 +13,18 @@ final class Init
 	public static function get_services()
 	{
 		return [
-			Pages\Admin::class,
+			Pages\Dashboard::class,
 			Base\Enqueue::class,
-			Base\SettingsLinks::class
+			Base\SettingsLinks::class,
+			Base\CustomPostTypeController::class,
+			Base\CustomTaxonomyController::class,
+			Base\WidgetController::class,
+			Base\GalleryController::class,
+			Base\TestimonialController::class,
+			Base\TemplateController::class,
+			Base\AuthController::class,
+			Base\MembershipController::class,
+			Base\ChatController::class,
 		];
 	}
 
@@ -42,6 +51,7 @@ final class Init
 	private static function instantiate( $class )
 	{
 		$service = new $class();
+
 		return $service;
 	}
 }

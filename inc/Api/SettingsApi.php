@@ -7,16 +7,20 @@ namespace Inc\Api;
 class SettingsApi
 {
 	public $admin_pages = [];
+
 	public $admin_subpages = [];
+
 	public $settings = [];
+
 	public $sections = [];
+
 	public $fields = [];
 
 
 	public function register()
 	{
-		if ( ! empty($this->admin_pages) ) {
-			add_action( 'admin_menu', [ $this, 'addAdminMenu' ] );
+		if ( ! empty($this->admin_pages) || ! empty($this->admin_subpages) ) {
+			add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
 		}
 
 		if ( !empty($this->settings) ) {
@@ -79,12 +83,14 @@ class SettingsApi
 
 		return $this;
 	}
+
 	public function setSections( array $sections )
 	{
 		$this->sections = $sections;
 
 		return $this;
 	}
+
 	public function setFields( array $fields )
 	{
 		$this->fields = $fields;
